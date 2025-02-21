@@ -18,6 +18,14 @@ header h1{
     margin: 0;
 }
 
+header a.back-link{
+    color:white;
+    text-decoration: none;
+}
+header a.back-link:hover {
+    text-decoration: underline;
+}
+
 nav a {
     color: white;
     margin-left: 20px;
@@ -90,12 +98,12 @@ button:hover{
     margin-right: 10px;
 }
 
-/* Список квестов */
+/* Список квестов и задач */
 .quest-list {
     margin-top: 10px;
 }
 
-.quest-item {
+.quest-item, .task-item {
     padding: 15px;
     border-bottom: 1px solid #eee;
     display: flex;
@@ -104,11 +112,11 @@ button:hover{
     transition: background-color 0.2s;
 }
 
-.quest-item:hover {
+.quest-item:hover, .task-item:hover {
     background-color: #f9f9f9;
 }
 
-.quest-item:last-child{
+.quest-item:last-child, .task-item:last-child{
     border-bottom: none;
 }
 
@@ -129,9 +137,13 @@ button:hover{
     text-decoration: underline;
 }
 
-.quest-item p {
+.quest-item p, .task-item span{
     margin: 0;
     color: #666;
+}
+
+.task-item input[type="checkbox"]{
+    margin-right: 10px;
 }
 
 .delete-btn {
@@ -147,6 +159,31 @@ button:hover{
     color: #999;
     font-style: italic;
     text-align: center;
+}
+
+/*Прогресс-бар*/
+.progress {
+    margin: 20px 0;
+}
+
+.progress-bar{
+    width: 100%;
+    max-width: 400px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    background-color: #28a745;
+    transition: width 0.3s ease;
+}
+
+#progress-text {
+    display: block;
+    margin-bottom: 5px;
 }
 
 /* Системные квесты */
@@ -171,7 +208,7 @@ button:hover{
     to { opacity: 1; }
 }
 
-.quest-item {
+.quest-item, .task-item {
     animation: fadeIn 0.3 ease-in;
 }
 
