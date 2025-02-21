@@ -1,10 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuestMaster</title>
+    <link rel ="stylesheet" href="styles.css">
 </head>
 <body>
-$END$
+  <header>
+    <h1>QuestMaster</h1>
+    <nav>
+      <a href="#" id="profile-link">Профиль</a>
+      <a href="#" id="chat-link">Чат</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="welcome">
+      <h2>Добро пожаловать, герой!</h2>
+      <p>Создай свой первый квест и начни приключение</p>
+      <button id="create-quest-btn">Создать квест</button>
+      <div id="quest-form" class="quest-form hidden">
+        <input type="text" id="quest-title" placeholder="Название квеста" required>
+        <textarea id="quest-description" placeholder="Описание(необязательно)"></textarea>
+        <button id="submit-quest">Добавить</button>
+        <button id="cancel-quest">Отмена</button>
+      </div>
+    </section>
+
+    <section class="quest">
+      <h2>Твои квесты</h2>
+      <div id="quest-list" class="quest-list">
+        <p class="empty">Пока квестов нет. Создай первый!</p>
+      </div>
+    </section>
+
+    <section class="system-quest">
+      <h2>Рекомендации от QuestMaster</h2>
+      <div id="system-quest-list" class="quest-list">
+        <p class="empty">Скоро появятся новые испытания!</p>
+      </div>
+    </section>
+
+    <section class="ranking">
+      <h2>Рейтинг героев</h2>
+      <div id="ranking-list" class="ranking-list">
+        <p class="empty">Рейтинг обновится, когда появятся герои</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="scripts.js"></script>
 </body>
 </html>

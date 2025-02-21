@@ -1,0 +1,210 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header{
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1{
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+nav a:hover{
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 30px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2{
+    color: #333;
+    margin-top: 0;
+}
+
+button{
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover{
+    background-color: #0056b3;
+}
+
+/*Форма для создания квеста*/
+.quest-form{
+    margin-top: 20px;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.hidden {
+    display: none;
+}
+
+#quest-title, #quest-description {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+#quest-description{
+    height: 100px;
+    resize: vertical;
+}
+
+#submit-quest {
+    margin-right: 10px;
+}
+
+/* Список квестов */
+.quest-list {
+    margin-top: 10px;
+}
+
+.quest-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.quest-item:hover {
+    background-color: #f9f9f9;
+}
+
+.quest-item:last-child{
+    border-bottom: none;
+}
+
+.quest-content {
+    flex-grow: 1;
+}
+
+.quest-item h3 {
+    margin: 0 0 5px 0;
+}
+
+.quest-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.quest-link:hover {
+    text-decoration: underline;
+}
+
+.quest-item p {
+    margin: 0;
+    color: #666;
+}
+
+.delete-btn {
+    background-color: #dc3445;
+    padding: 5px 10px;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.empty {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Системные квесты */
+.system-quest .quest-item {
+    background-color: #f0f8f1;
+}
+
+/* Рейтинг */
+.ranking-list .empty {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ranking-list .empty {
+    text-align: center;
+}
+
+/*Анимации*/
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.quest-item {
+    animation: fadeIn 0.3 ease-in;
+}
+
+/* Заглушки для карты и чата */
+section:empty::after {
+    content: "Скоро здесь будет что-то крутое!";
+    color: #999;
+    font-style: italic;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
