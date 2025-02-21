@@ -14,6 +14,10 @@ function  initIndexPage(){
     const questform = document.getElementById('quest-form');
     const cancelQuestBtn = document.getElementById('cancel-quest');
     const questlist = document.getElementById('quest-list');
+    const chatSection = document.getElementById('chat-section');
+    const chatLink = document.getElementById('chat-link');
+    const mapContainer = document.getElementById('map-container');
+    let questCount = 0;
 
     createQuestBtn.addEventListener('click', () => {
         questform.classList.remove('hidden');
@@ -60,6 +64,9 @@ function  initIndexPage(){
         createQuestBtn.classList.remove('hidden');
         document.getElementById('quest-title').value = '';
         document.getElementById('quest-description').value = '';
+
+        questCount++;
+        updateMap(questCount);
     });
 
 //Удаление квеста(добавление делегированных событий)
@@ -67,9 +74,35 @@ function  initIndexPage(){
         if(e.target.closest('.delete-btn')){
             const questItem = e.target.closest('.quest-item');
             questItem.remove();
+            questCount--;
+            updateMap(questCount);
             if(questlist.children.length === 0){
                 questlist.innerHTML = '<p class="empty">Пока квестов нет. Создай первый!</p>';
             }
+        }
+    });
+
+    function updateMap(count) {
+        const marker = document.getElementById('player-marker');
+        const mapWidth = mapContainer.offsetWidth - marker.offsetWidth;
+        const position = (count % 5) * (mapWidth / 4);
+        marker.style.left = `${position}px`;
+    }
+
+    chatLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        chatSection.classList.toggle('hidden');
+    });
+
+    document.getElementById('send-chat').addEventListener('click', () => {
+        const chatInput = document.getElementById('chat-input');
+        const message = chatInput.value.trim();
+        if (message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('chat-message');
+            messageDiv.innerHTML = `<span><i class="fas fa-user"></i> Ты:</span>> ${message}`;
+            document.getElementById('chat-messages').appendChild(messageDiv);
+            chatInput.value = '';
         }
     });
 }
@@ -99,17 +132,23 @@ function initQuestPage(){
         const taskInput = document.getElementById('task-input');
         const taskText = taskInput.value.trim();
 
-        if(taskText === ''){
+        if (taskText === '') {
             alert('Введите задачу!');
             return
         }
 
+        addTask(taskText);
+        taskInput.value = '';
+    });
+
+    function addTask(taskText) {
         const taskItem = document.createElement('div');
         taskItem.classList.add('task-item');
         taskItem.innerHTML = `
-            <input type="checkbox" class="task-checkbox">
-            <span>${taskText}</span>
-            <button class="delete-btn"><i class="fas fa-trash"></i></button>
+        <input type="checkbox" class="task-checkbox">
+        <span contenteditable="false">${taskText}</span>
+        <button class="edit-btn"><i class="fas fa-edit"</i></button>
+        <button class="delete-btn"><i class="fas fa-trash">-</i></button>
         `;
 
         const emptyMessage = taskList.querySelector('.empty');
@@ -117,11 +156,13 @@ function initQuestPage(){
 
         taskList.appendChild(taskItem);
         tasks.push(taskText);
-        taskInput.value = '';
         updateProgress();
-    });
+    }
 
     taskList.addEventListener('click', (e) => {
+        const taskItem = e.target.closest('.task-item');
+        if (!taskItem) return;
+
         if (e.target.classList.contains('task-checkbox')) {
             const  checkbox = e.target;
             completedTasks += checkbox.checked ? 1 : -1;
@@ -135,8 +176,20 @@ function initQuestPage(){
                  taskList.innerHTML = '<p class="empty"> Задач пока нет. Добавь первую!</p>';
             }
             updateProgress();
+        } else if (e.target.closest('.edit-btn')){
+            const span = taskItem.querySelector('span');
+            const isEditable = span.getAttribute('contenteditable') === 'true';
+            span.setAttribute('contenteditable', !isEditable);
+            if (isEditable) {
+                span.blur();
+                const newText = span.textContent.trim();
+                const index = tasks.indexOf(taskText);
+                if(index !== -1) tasks[index] = newText;
+            } else {
+                span.focus();
+            }
         }
-    })
+    });
 }
 
 //Навигация
@@ -144,19 +197,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
     initPage();
 
     const profileLink = document.getElementById('profile-link');
-    const chatLink = document.getElementById('chat-link');
 
     if (profileLink) {
         profileLink.addEventListener('click', (e) => {
             e.preventDefault();
             alert('Профиль пока в разработке!');
-        });
-    }
-
-    if (chatLink) {
-        chatLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('Чат скоро будет готов!')
         });
     }
 });

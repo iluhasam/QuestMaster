@@ -1,27 +1,31 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Georgia', serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    color: #333;
 }
 
 header{
-    background-color: #333;
+    background: linear-gradient(to right, #2c3e50, #4a677d);
     color: white;
-    padding: 10px 20px;
+    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 header h1{
     margin: 0;
+    font-size: 28px;
 }
 
 header a.back-link{
     color:white;
     text-decoration: none;
 }
+
 header a.back-link:hover {
     text-decoration: underline;
 }
@@ -30,48 +34,63 @@ nav a {
     color: white;
     margin-left: 20px;
     text-decoration: none;
+    font-weight: bold;
 }
 
 nav a:hover{
-    text-decoration: underline;
+    color: #ffd700;
 }
 
 main {
-    padding: 20px;
+    padding: 30px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 section {
-    margin-bottom: 30px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+section:hover {
+    transform: translateY(-5px);
 }
 
 h2{
-    color: #333;
+    color: #2c3e50;
     margin-top: 0;
+    font-size: 24px;
 }
 
 button{
-    padding: 8px 16px;
-    background-color: #007bff;
+    padding: 10px 20px;
+    background: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background 0.3s, transform 0.2s;
 }
 
 button:hover{
     background-color: #0056b3;
+    transform: scale(1.05);
 }
 
-/*Форма для создания квеста*/
-.quest-form{
+button i {
+    margin-right: 5px;
+}
+
+/*Формы*/
+.quest-form, .task-form, .chat-input {
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     animation: fadeIn 0.3s ease-in;
 }
 
@@ -79,31 +98,34 @@ button:hover{
     display: none;
 }
 
-#quest-title, #quest-description {
-    display: block;
-    width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
+#quest-title, #quest-description, #task-inout, #chat-input{
+    flex: 1;
+    min-width: 200px;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    transition: border-color 0.3s;
 }
+
+#quest-title:focus, #quest-description:focus, #task-inout:focus, #chat-input:focus{
+    border-color: #007bff;
+    outline: none;
+}
+
 #quest-description{
     height: 100px;
     resize: vertical;
 }
 
-#submit-quest {
-    margin-right: 10px;
-}
-
 /* Список квестов и задач */
-.quest-list {
-    margin-top: 10px;
+.quest-list, .task-list, .chat-messages {
+    margin-top: 15px;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
-.quest-item, .task-item {
+.quest-item, .task-item, .chat-messages {
     padding: 15px;
     border-bottom: 1px solid #eee;
     display: flex;
@@ -112,11 +134,11 @@ button:hover{
     transition: background-color 0.2s;
 }
 
-.quest-item:hover, .task-item:hover {
-    background-color: #f9f9f9;
+.quest-item:hover, .task-item:hover, .chat-messages:hover {
+    background-color: #f1faff;
 }
 
-.quest-item:last-child, .task-item:last-child{
+.quest-item:last-child, .task-item:last-child, .chat-messages:last-child{
     border-bottom: none;
 }
 
@@ -137,26 +159,35 @@ button:hover{
     text-decoration: underline;
 }
 
-.quest-item p, .task-item span{
-    margin: 0;
-    color: #666;
+.task-item span[contenteditable="true"]{
+    border-bottom: 2px dotted #007bff;
+    padding: 2px;
 }
 
 .task-item input[type="checkbox"]{
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
-.delete-btn {
-    background-color: #dc3445;
+.delete-btn, .edit-btn {
+    background: #dc3545;
     padding: 5px 10px;
+    margin-left: 10px;
+}
+
+.edit-btn {
+    background: #ffc107;
 }
 
 .delete-btn:hover {
-    background-color: #c82333;
+    background: #c82333;
+}
+
+.edit-btn:hover {
+    background: #e0a800;
 }
 
 .empty {
-    color: #999;
+    color: #777;
     font-style: italic;
     text-align: center;
 }
@@ -169,54 +200,78 @@ button:hover{
 .progress-bar{
     width: 100%;
     max-width: 400px;
-    height: 20px;
-    background-color: #ddd;
-    border-radius: 10px;
+    height: 25px;
+    background: #e9ecef;
+    border-radius: 12px;
     overflow: hidden;
 }
 
 #progress-fill {
     height: 100%;
-    background-color: #28a745;
+    background: linear-gradient(to right, #28a745, #20c997);
     transition: width 0.3s ease;
 }
 
 #progress-text {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
 /* Системные квесты */
 .system-quest .quest-item {
-    background-color: #f0f8f1;
+    background: #f0f8f1;
 }
 
 /* Рейтинг */
 .ranking-list .empty {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
-.ranking-list .empty {
-    text-align: center;
+/* Карта */
+.map-container {
+    position: relative;
+    height: 200px;
+    background: url('https://via.placeholder.com/1200x200?text=Map+Background') no-repeat center/cover;;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.player-marker {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: #ffd700;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: left 0.5s ease;
+}
+
+/* Чат */
+.chat-messages {
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.chat-message span {
+    font-weight: bold;
+    color: #007bff;
+    margin-right: 10px;
 }
 
 /*Анимации*/
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.quest-item, .task-item {
+section, .quest-item, .task-item, .chat-messages {
     animation: fadeIn 0.3 ease-in;
-}
-
-/* Заглушки для карты и чата */
-section:empty::after {
-    content: "Скоро здесь будет что-то крутое!";
-    color: #999;
-    font-style: italic;
 }
 
 
