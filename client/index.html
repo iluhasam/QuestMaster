@@ -23,10 +23,12 @@
       <p>Создай свой первый квест и начни приключение</p>
       <button id="create-quest-btn"><i class="fas fa-plus"></i>Создать квест</button>
       <div id="quest-form" class="quest-form hidden">
+        <label for="quest-title">Название квеста:</label>
         <input type="text" id="quest-title" placeholder="Название квеста" required>
-        <textarea id="quest-description" placeholder="Описание(необязательно)"></textarea>
-        <button id="submit-quest"><i class="fas fa-check"></i>Добавить</button>
-        <button id="cancel-quest"><i class="fas fa-times"></i>Отмена</button>
+        <label for="quest-description">Описание:</label>
+        <textarea id="quest-description" placeholder="Описание (необязательно)"></textarea>
+        <button id="submit-quest"><i class="fas fa-check"></i> Добавить</button>
+        <button id="cancel-quest"><i class="fas fa-times"></i> Отмена</button>
       </div>
     </section>
 
@@ -63,23 +65,33 @@
       </div>
     </section>
 
-    <section class="chat hidden" id="chat-section">
-      <h2><i class="fas fa-comments"></i> Чат</h2>
-      <div id="chat-messages" class="chat-messages"></div>
-      <div class="chat-input">
-        <input type="text" id="chat-input" placeholder="Напиши сообщение...">
-        <button id="send-chat"><i class="fas fa-paper-plane"></i></button>
+    <div class="chat-popup" id="chat-popup">
+      <div class="chat-header">
+        <span>Чат</span>
+        <button id="chat-toggle-btn"><i class="fas fa-minus"></i></button>
       </div>
-    </section>
+      <div class="chat-content" id="chat-content">
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chat-input">
+          <label for="chat-input">Сообщение:</label>
+          <input type="text" id="chat-input" placeholder="Напиши сообщение...">
+          <button id="send-chat"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <!-- Окно авторизации-->
   <div id="auth-modal" class="modal hidden">
     <div class="modal-content">
-      <h2><i class="fas fa-lock"></i> Вход</h2>
+      <h2><i class="fas fa-lock"></i> Авторизация</h2>
+      <label for="username">Имя пользователя:</label>
       <input type="text" id="username" placeholder="Имя пользователя">
+      <label for="password">Пароль:</label>
       <input type="password" id="password" placeholder="Пароль">
       <button id="login-btn"><i class="fas fa-sign-in-alt"></i> Войти</button>
+      <button id="register-btn"><i class="fas fa-user-plus"></i> Регистрация</button>
       <button id="close-auth"><i class="fas fa-times"></i> Закрыть</button>
     </div>
   </div>

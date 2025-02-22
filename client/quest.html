@@ -1,56 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QuestMaster - Квест</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Font Awesome Для Иконок -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-  <header>
-    <h1><a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> QuestMaster</a></h1>
-    <nav>
-      <a href="#" id="profile-link">Профиль</a>
-      <a href="#" id="chat-link">Чат</a>
-      <button id="theme-toggle"><i class="fas fa-moon"></i></button>
-    </nav>
-  </header>
+<header>
+  <h1><a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> QuestMaster</a></h1>
+  <nav>
+    <a href="#" id="profile-link"><i class="fas fa-user"></i> Профиль</a>
+    <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+  </nav>
+</header>
 
-  <main>
-    <section class="quest-details">
-      <h2 id="quest-title">Название квеста</h2>
-      <p id="quest-description">Описание квеста</p>
-      <div class="boss-info hidden" id="boss-info">
-        <h3><i class="fas fa-skull"></i>Босс: <span id="boss-name"></span></h3>
-        <div class="boss-health">
-          <span id="boss-health-text">Здоровье: 100/100</span>
-          <div class="health-bar">
-            <div id="boss-health-fill" style="width: 100%;"></div>
-          </div>
+<main>
+  <section class="quest-details">
+    <h2 id="quest-title">Название квеста</h2>
+    <p id="quest-description">Описание квеста</p>
+    <div class="boss-info hidden" id="boss-info">
+      <h3><i class="fas fa-skull"></i> Босс: <span id="boss-name"></span></h3>
+      <div class="boss-health">
+        <span id="boss-health-text">Здоровье: 100/100</span>
+        <div class="health-bar">
+          <div id="boss-health-fill" style="width: 100%;"></div>
         </div>
       </div>
-      <div class="progress">
-        <span id="progress-text">Прогресс: 0/0</span>
-        <div class="progress-bar">
-          <div id="progress-fill" style="width: 0%;"></div>
-        </div>
+    </div>
+    <div class="progress">
+      <span id="progress-text">Прогресс: 0/0</span>
+      <div class="progress-bar">
+        <div id="progress-fill" style="width: 0%;"></div>
       </div>
-      <button id="toggle-boss" class="boss-toggle"><i class="fas fa-skull"></i>Сделать боссом</button>
+    </div>
+    <button id="toggle-boss" class="boss-toggle"><i class="fas fa-skull"></i> Сделать боссом</button>
 
-      <h3><i class="fas fa-tasks"></i>Задачи</h3>
-      <div id="task-list" class="task-list">
-        <p class="empty">Задач пока нет. Добавь первую!</p>
-      </div>
+    <h3><i class="fas fa-tasks"></i> Задачи</h3>
+    <div id="task-list" class="task-list">
+      <p class="empty">Задач пока нет. Добавь первую!</p>
+    </div>
 
-      <div class="task-form">
-        <input type="text" id="task-input" placeholder="Новая задача">
-        <button id="add-task-btn"><i class="fas fa-plus"></i>Добавить</button>
-      </div>
-    </section>
-  </main>
+    <div class="task-form">
+      <label for="task-input">Новая задача:</label>
+      <input type="text" id="task-input" placeholder="Новая задача">
+      <button id="add-task-btn"><i class="fas fa-plus"></i> Добавить</button>
+    </div>
+  </section>
+</main>
 
-  <script src="scripts.js"></script>
+<script src="scripts.js"></script>
 </body>
 </html>

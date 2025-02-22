@@ -142,7 +142,7 @@ button i {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 #quest-title, #quest-description, #task-inout, #chat-input, #username, #password{
@@ -270,19 +270,99 @@ body.light-theme .map-svg{
 }
 
 /* Чат */
-.chat-messages {
-    padding: 10px;
-    background: #333;
-    border-radius: 6px;
+.chat-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background: var(--card-dark);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
 
-body.light-theme .chat-messages {
-    background: #f9f9f9;
+body.light-theme .chat-popup {
+    background: var(--card-light);
+}
+
+.chat-header {
+    padding: 10px;
+    background: #121212;
+    color: var(--text-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: pointer;
+}
+
+body.light-theme .chat-header {
+    background: #e0e0e0;
+    color: var(--text-light);
+}
+
+.chat-header span {
+    font-weight: bold;
+}
+
+#chat-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    font-size: 16px;
+    padding: 0;
+}
+
+body.light-theme #chat-toggle-btn {
+    color: var(--text-light);
+}
+
+.chat-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.chat-message {
+    display: flex; /* Используем flex для горизонтального расположения */
+    flex-direction: row; /* Имя слева, сообщение справа */
+    align-items: center; /* Выравнивание по центру */
+    padding: 5px;
+    word-wrap: break-word;
+    gap: 10px; /* Отступ между именем и сообщением */
 }
 
 .chat-message span {
+    font-weight: bold;
     color: var(--accent);
-    margin-right: 10px;
+    flex-shrink: 0; /* Имя не сжимается */
+}
+
+.chat-message {
+    display: block; /* Каждое сообщение в столбик */
+    padding: 5px;
+    word-wrap: break-word; /* Перенос длинных слов */
+}
+
+.chat-input {
+    display: flex;
+    gap: 5px;
+}
+
+.chat-popup.minimized {
+    height: 40px; /* Только заголовок */
+}
+
+.chat-popup.minimized .chat-content {
+    display: none;
+}
+
+.chat-popup {
+    animation: slideIn 0.3s ease-out;
 }
 
 /* Достижения */
@@ -324,6 +404,11 @@ body.light-theme .modal-content{
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 section, .quest-item, .task-item, .chat-messages, .achievement-item {
