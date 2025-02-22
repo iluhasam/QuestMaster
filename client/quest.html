@@ -14,6 +14,7 @@
     <nav>
       <a href="#" id="profile-link">Профиль</a>
       <a href="#" id="chat-link">Чат</a>
+      <button id="theme-toggle"><i class="fas fa-moon"></i></button>
     </nav>
   </header>
 
@@ -21,14 +22,24 @@
     <section class="quest-details">
       <h2 id="quest-title">Название квеста</h2>
       <p id="quest-description">Описание квеста</p>
+      <div class="boss-info hidden" id="boss-info">
+        <h3><i class="fas fa-skull"></i>Босс: <span id="boss-name"></span></h3>
+        <div class="boss-health">
+          <span id="boss-health-text">Здоровье: 100/100</span>
+          <div class="health-bar">
+            <div id="boss-health-fill" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
       <div class="progress">
         <span id="progress-text">Прогресс: 0/0</span>
         <div class="progress-bar">
           <div id="progress-fill" style="width: 0%;"></div>
         </div>
       </div>
+      <button id="toggle-boss" class="boss-toggle"><i class="fas fa-skull"></i>Сделать боссом</button>
 
-      <h3>Задачи</h3>
+      <h3><i class="fas fa-tasks"></i>Задачи</h3>
       <div id="task-list" class="task-list">
         <p class="empty">Задач пока нет. Добавь первую!</p>
       </div>

@@ -1,157 +1,195 @@
+:root {
+    --bg-dark: #1a1a1a;
+    --bg-light: #f5f5f5;
+    --card-dark: #2b2b2b;
+    --card-light: #fff;
+    --text-dark: #d4d4d4;
+    --text-light: #333;
+    --accent: #ff6f61;
+    --hover: #ff8a80;
+}
+
 body {
-    font-family: 'Georgia', serif;
+    font-family: 'Courier New', monospace;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #e0eafc, #cfdef3);
-    color: #333;
+    background: var(--bg-dark);
+    color: var(--text-dark);
+    transition: all 0.3s;
+}
+
+body.light-theme {
+    background: var(--bg-light);
+    color: var(--text-light);
 }
 
 header{
-    background: linear-gradient(to right, #2c3e50, #4a677d);
-    color: white;
-    padding: 15px 30px;
+    background: #121212;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+header.light-theme {
+    background: #e0e0e0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 header h1{
     margin: 0;
-    font-size: 28px;
+    font-size: 26px;
 }
 
 header a.back-link{
-    color:white;
+    color: var(--text-dark);
     text-decoration: none;
 }
 
-header a.back-link:hover {
-    text-decoration: underline;
+header.light-theme a.back-link {
+    color: var(--text-light);
 }
 
-nav a {
-    color: white;
-    margin-left: 20px;
+nav a, nav button {
+    color: var(--text-dark);
+    margin-left: 30px;
     text-decoration: none;
     font-weight: bold;
 }
 
-nav a:hover{
-    color: #ffd700;
+nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+header.light-theme nav a, header.light-theme nav button {
+    color: var(--text-light);
+}
+
+nav a:hover, nav button:hover {
+    color: var(--accent);
 }
 
 main {
-    padding: 30px;
-    max-width: 1200px;
+    padding: 40px;
+    max-width: 1400px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
 section {
-    margin-bottom: 40px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    background: var(--card-dark);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+}
+
+body.light-theme section {
+    background: var(--card-light);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 section:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
 }
 
 h2{
-    color: #2c3e50;
-    margin-top: 0;
-    font-size: 24px;
+    color: var(--accent);
+    margin: 0 0 15px 0;
+    font-size: 20px;
+}
+
+h2 i {
+    margin-right: 8px;
 }
 
 button{
-    padding: 10px 20px;
-    background: #007bff;
+    padding: 8px 16px;
+    background: var(--accent);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    transition: background 0.3s;
 }
 
 button:hover{
-    background-color: #0056b3;
-    transform: scale(1.05);
+    background: var(--hover);
 }
 
 button i {
     margin-right: 5px;
 }
 
+.boss-toggle {
+    background: #6b7280;
+}
+
+.boss-toggle:hover {
+    background: #9ca3af;
+}
+
 /*Формы*/
 .quest-form, .task-form, .chat-input {
-    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    animation: fadeIn 0.3s ease-in;
 }
 
 .hidden {
     display: none;
 }
 
-#quest-title, #quest-description, #task-inout, #chat-input{
+#quest-title, #quest-description, #task-inout, #chat-input, #username, #password{
     flex: 1;
     min-width: 200px;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #333;
+    color: var(--text-dark);
+}
+
+body.light-theme #quest-title, body.light-theme #quest-description,
+body.light-theme #task-inout, body.light-theme #chat-input,
+body.light-theme #username, body.light-theme #password{
+    border-color: #ccc;
     background: #fff;
-    transition: border-color 0.3s;
+    color: var(--text-light);
 }
 
-#quest-title:focus, #quest-description:focus, #task-inout:focus, #chat-input:focus{
-    border-color: #007bff;
-    outline: none;
-}
-
-#quest-description{
-    height: 100px;
-    resize: vertical;
-}
-
-/* Список квестов и задач */
-.quest-list, .task-list, .chat-messages {
+/* Списки */
+.quest-list, .task-list, .chat-messages, .achievements-item {
     margin-top: 15px;
-    max-height: 300px;
+    max-height: 250px;
     overflow-y: auto;
 }
 
-.quest-item, .task-item, .chat-messages {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
+.quest-item, .task-item, .chat-messages, .achievements-item {
+    padding: 12px;
+    border-bottom: 1px solid #444;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background-color 0.2s;
 }
 
-.quest-item:hover, .task-item:hover, .chat-messages:hover {
-    background-color: #f1faff;
+body.light-theme .quest-item, body.light-theme .task-item,
+body.light-theme .chat-message, body.light-theme .achievement-item {
+    border-bottom: 1px solid #ddd;
 }
 
-.quest-item:last-child, .task-item:last-child, .chat-messages:last-child{
+.quest-item:last-child, .task-item:last-child,
+.chat-message:last-child, .achievement-item:last-child {
     border-bottom: none;
 }
 
-.quest-content {
-    flex-grow: 1;
-}
-
-.quest-item h3 {
-    margin: 0 0 5px 0;
-}
-
 .quest-link {
-    color: #007bff;
+    color: var(--accent);
     text-decoration: none;
 }
 
@@ -160,108 +198,126 @@ button i {
 }
 
 .task-item span[contenteditable="true"]{
-    border-bottom: 2px dotted #007bff;
-    padding: 2px;
+    border-bottom: 2px dotted var(--accent);
 }
 
 .task-item input[type="checkbox"]{
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .delete-btn, .edit-btn {
-    background: #dc3545;
+    background: #444;
     padding: 5px 10px;
-    margin-left: 10px;
 }
 
 .edit-btn {
-    background: #ffc107;
+    background: #6b7280;
 }
 
 .delete-btn:hover {
-    background: #c82333;
+    background: #666;
 }
 
 .edit-btn:hover {
-    background: #e0a800;
+    background: #9ca3af;
 }
 
 .empty {
-    color: #777;
+    color: #888;
     font-style: italic;
     text-align: center;
 }
 
-/*Прогресс-бар*/
-.progress {
-    margin: 20px 0;
+/*Прогресс-бар и здоровье */
+.progress, .health-bar{
+    margin: 15px 0;
 }
 
-.progress-bar{
+.progress-bar, .health-bar {
     width: 100%;
-    max-width: 400px;
-    height: 25px;
-    background: #e9ecef;
-    border-radius: 12px;
+    height: 20px;
+    background: #444;
+    border-radius: 10px;
     overflow: hidden;
+}
+
+body.light-theme .progress-bar, body.light-theme .health-bar {
+    background: #ddd;
 }
 
 #progress-fill {
     height: 100%;
-    background: linear-gradient(to right, #28a745, #20c997);
+    background: #10b981;
     transition: width 0.3s ease;
 }
 
-#progress-text {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-/* Системные квесты */
-.system-quest .quest-item {
-    background: #f0f8f1;
-}
-
-/* Рейтинг */
-.ranking-list .empty {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+#boss-health-fill {
+    height: 100%;
+    background: #ef4444;
+    transition: width 0.3s ease;
 }
 
 /* Карта */
-.map-container {
-    position: relative;
-    height: 200px;
-    background: url('https://via.placeholder.com/1200x200?text=Map+Background') no-repeat center/cover;;
-    border-radius: 12px;
-    overflow: hidden;
+.map-svg {
+    width: 100%;
+    height: 150px;
+    background: #222;
+    border-radius: 6px;
 }
 
-.player-marker {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 20px;
-    height: 20px;
-    background: #ffd700;
-    border-radius: 50%;
-    transform: translateY(-50%);
-    transition: left 0.5s ease;
+body.light-theme .map-svg{
+    background: #eee;
 }
 
 /* Чат */
 .chat-messages {
     padding: 10px;
+    background: #333;
+    border-radius: 6px;
+}
+
+body.light-theme .chat-messages {
     background: #f9f9f9;
-    border-radius: 8px;
 }
 
 .chat-message span {
-    font-weight: bold;
-    color: #007bff;
+    color: var(--accent);
     margin-right: 10px;
+}
+
+/* Достижения */
+.achievement-item strong {
+    color: #ffd700;
+}
+
+/* Модальное окно */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--card-dark);
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+}
+
+body.light-theme .modal-content{
+    background: var(--card-light);
+}
+
+.modal-content input {
+    margin: 10px 0;
+    width: 100%;
 }
 
 /*Анимации*/
@@ -270,7 +326,7 @@ button i {
     to { opacity: 1; transform: translateY(0); }
 }
 
-section, .quest-item, .task-item, .chat-messages {
+section, .quest-item, .task-item, .chat-messages, .achievement-item {
     animation: fadeIn 0.3 ease-in;
 }
 

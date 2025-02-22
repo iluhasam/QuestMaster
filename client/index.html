@@ -11,8 +11,9 @@
   <header>
     <h1>QuestMaster</h1>
     <nav>
-      <a href="#" id="profile-link"><i class="fas fa-user"></i>Профиль</a>
-      <a href="#" id="chat-link"><i class="fas fa-comments">Чат</i></a>
+      <a href="#" id="profile-link"><i class="fas fa-user"></i> Профиль</a>
+      <a href="#" id="chat-link"><i class="fas fa-comments"> Чат</i></a>
+      <button id="theme-toggle"><i class="fas fa-moon"></i></button>
     </nav>
   </header>
 
@@ -37,14 +38,14 @@
     </section>
 
     <section class="system-quest">
-      <h2><i class="fas fa-star"></i>Рекомендации от QuestMaster</h2>
+      <h2><i class="fas fa-star"></i>Рекомендации</h2>
       <div id="system-quest-list" class="quest-list">
         <p class="empty">Скоро появятся новые испытания!</p>
       </div>
     </section>
 
     <section class="ranking">
-      <h2><i class="fas fa-trophy"></i>Рейтинг героев</h2>
+      <h2><i class="fas fa-trophy"></i>Рейтинг</h2>
       <div id="ranking-list" class="ranking-list">
         <p class="empty">Рейтинг обновится, когда появятся герои</p>
       </div>
@@ -52,8 +53,13 @@
 
     <section class="progress-map">
       <h2><i class="fas fa-map"></i>Карта прогресса</h2>
-      <div id="map-container" class="map-container">
-        <div id="player-marker" class="player-marker"></div>
+      <svg id="map-svg" class="map-svg" viewBox="0 0 600 200"></svg>
+    </section>
+
+    <section class="achievements">
+      <h2><i class="fas fa-medal"></i>Достижения</h2>
+      <div id="achievement-list" class="achievement-list">
+        <p class="empty">Выполняй квесты, чтобы открыть достижения!</p>
       </div>
     </section>
 
@@ -67,6 +73,16 @@
     </section>
   </main>
 
+  <!-- Окно авторизации-->
+  <div id="auth-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2><i class="fas fa-lock"></i> Вход</h2>
+      <input type="text" id="username" placeholder="Имя пользователя">
+      <input type="password" id="password" placeholder="Пароль">
+      <button id="login-btn"><i class="fas fa-sign-in-alt"></i> Войти</button>
+      <button id="close-auth"><i class="fas fa-times"></i> Закрыть</button>
+    </div>
+  </div>
   <script src="scripts.js"></script>
 </body>
 </html>
